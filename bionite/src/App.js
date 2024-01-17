@@ -2,25 +2,24 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
+  Routes, // Import 'Routes' instead of 'Switch'
   Redirect,
 } from "react-router-dom";
-// import './App.css';
-// import LoginForm from './LoginForm';
-// import BackgroundImage from './BackgroundImage';
-// import RegistrationForm from './RegistrationForm'; // Create this component
+import LoginPage from "./pages/LoginPage";
+// import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
     <Router>
       <div className="authentication-container">
-        <Switch>
-          <Route path="/login" exact component={LoginForm} />
-          <Route path="/register" exact component={RegistrationForm} />
-          <Route path="/" exact component={BackgroundImage} />
-          <Redirect to="/login" />{" "}
-          {/* Redirect to the login page if no route matches */}
-        </Switch>
+        <Routes>
+          {" "}
+          {/* Use 'Routes' here */}
+          <Route path="/" element={<LoginPage />} />
+          {/* <Route path="/register" element={} /> */}
+          {/* Redirect is handled differently in v6 */}
+          {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
+        </Routes>
       </div>
     </Router>
   );
