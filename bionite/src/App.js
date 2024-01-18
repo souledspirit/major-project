@@ -5,13 +5,14 @@ import {
   Routes, // Import 'Routes' instead of 'Switch'
   Redirect,
 } from "react-router-dom";
+import "./index.css";
 import LoginPage from "./pages/LoginPage";
 // import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
     <Router>
-      <div className="authentication-container">
+      <div>
         <Routes>
           {" "}
           {/* Use 'Routes' here */}
