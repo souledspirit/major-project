@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import LoginPage from "./pages/LoginPage";
+import DashBoard from "./pages/DashBoard";
 // import RegisterPage from "./pages/RegisterPage";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           {" "}
           {/* Use 'Routes' here */}
           <Route path="/" element={<LoginPage />} />
-          {/* <Route path="/register" element={} /> */}
+          <Route path="/dashboard" element={<DashBoard />} />
           {/* Redirect is handled differently in v6 */}
           {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
         </Routes>
