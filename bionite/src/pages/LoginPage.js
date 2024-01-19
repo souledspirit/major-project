@@ -1,9 +1,15 @@
-import React from "react";
+// LoginPage.js
 
-export default function LoginPage() {
+import React from "react";
+import SignInForm from "../components/authentication/SignInForm"; // Import the SignInForm component
+
+function LoginPage() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      {/* Wrap the SignInForm component here */}
+      <SignInForm />
     </div>
   );
 }
+
+export default LoginPage;
