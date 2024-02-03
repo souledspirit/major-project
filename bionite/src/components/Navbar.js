@@ -5,7 +5,7 @@ const Navbar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <button className="btn btn-ghost text-xl">daisyUI</button>
+          <button className="btn btn-ghost text-xl">Bionite</button>
         </div>
         <div className="flex-none">
           <button className="btn btn-square btn-ghost">
