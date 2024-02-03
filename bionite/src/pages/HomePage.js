@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import SiteFooter from "../components/SiteFooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -36,23 +37,21 @@ function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {/* NFC Card Compatibility Card */}
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
+              <div className="card-body flex flex-col items-center">
                 <div className="text-center py-4">
                   <FontAwesomeIcon
                     icon={faNfcSymbol}
                     style={{ color: "#1662e3", fontSize: "3rem" }}
                   />
                 </div>
-                <h2 className="card-title text-center">
-                  NFC Card Compatibility
-                </h2>
+                <h2 className="card-title ">NFC Card Compatibility</h2>
                 <p>Seamless integration with NFC cards for easy attendance.</p>
               </div>
             </div>
 
             {/* Fingerprint Scanning Card */}
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
+              <div className="card-body flex flex-col items-center">
                 <div className="text-center py-4">
                   <FontAwesomeIcon
                     icon={faFingerprint}
@@ -68,7 +67,7 @@ function HomePage() {
 
             {/* Real-time Tracking Card */}
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
+              <div className="card-body flex flex-col items-center">
                 <div className="text-center py-4">
                   <FontAwesomeIcon
                     icon={faClockRotateLeft}
@@ -82,7 +81,7 @@ function HomePage() {
 
             {/* Top-notch Security Card */}
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
+              <div className="card-body flex flex-col items-center">
                 <div className="text-center py-4">
                   <FontAwesomeIcon
                     icon={faShieldHalved}
@@ -124,6 +123,7 @@ function HomePage() {
           <button className="btn btn-primary">Contact Us</button>
         </div>
       </div>
+      <SiteFooter />
     </div>
   );
 }
