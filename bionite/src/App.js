@@ -8,6 +8,7 @@ import {
 import "./index.css";
 import LoginPage from "./pages/LoginPage";
 import DashBoard from "./pages/DashBoard";
+import HomePage from "./pages/HomePage";
 // import RegisterPage from "./pages/RegisterPage";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           {" "}
           {/* Use 'Routes' here */}
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashBoard />} />
           {/* Redirect is handled differently in v6 */}
           {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
