@@ -1,101 +1,106 @@
-// LoginPage.js
+import { useState } from "react";
+import { Link } from "react-router-dom";
+// import LandingIntro from "./LandingIntro";
+import ErrorText from "../components/Typography/ErrorText";
+import InputText from "../components/Input/InputText";
 
-import React from "react";
-import SignInForm from "../components/authentication/SignInForm"; // Import the SignInForm component
-import LoginForm from "../components/authentication/LoginForm";
+function Login() {
+  const INITIAL_LOGIN_OBJ = {
+    password: "",
+    emailId: "",
+  };
 
-function LoginPage() {
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    setErrorMessage("");
+
+    if (loginObj.emailId.trim() === "")
+      return setErrorMessage("Email Id is required!");
+    if (loginObj.password.trim() === "")
+      return setErrorMessage("Password is required!");
+    else {
+      setLoading(true);
+      // Simulate API call
+      setTimeout(() => {
+        localStorage.setItem("token", "DumyTokenHere");
+        setLoading(false);
+        window.location.href = "/app/welcome";
+      }, 2000);
+    }
+  };
+
+  const updateFormValue = ({ updateType, value }) => {
+    setErrorMessage("");
+    setLoginObj({ ...loginObj, [updateType]: value });
+  };
+
   return (
-    <div>
-      {/* Wrap the SignInForm component here */}
-      <LoginForm />
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="card w-full max-w-md bg-gray-900 shadow-2xl">
+        <div className="card-body">
+          <h2 className="text-3xl font-bold mb-4 text-center text-red-700">
+            Login
+          </h2>
+          <form onSubmit={(e) => submitForm(e)}>
+            <InputText
+              type="email"
+              defaultValue={loginObj.emailId}
+              updateType="emailId"
+              containerStyle="mt-4"
+              labelTitle="Email Id"
+              updateFormValue={updateFormValue}
+              inputStyle="input input-bordered w-full"
+            />
 
-      <div class="flex flex-col min-h-screen">
-        {/* <!-- Hero Section --> */}
-        <div
-          class="hero min-h-screen"
-          style="background-image: url('path/to/your/background-image.jpg');"
-        >
-          <div class="hero-overlay bg-opacity-60"></div>
-          <div class="hero-content text-center text-neutral-content">
-            <div class="max-w-md">
-              <h1 class="mb-5 text-5xl font-bold">Welcome to Bionite</h1>
-              <p class="mb-5">
-                The next generation of attendance systems using NFC and
-                fingerprint technology.
-              </p>
-              <button class="btn btn-primary">Learn More</button>
+            <InputText
+              defaultValue={loginObj.password}
+              type="password"
+              updateType="password"
+              containerStyle="mt-4"
+              labelTitle="Password"
+              updateFormValue={updateFormValue}
+              inputStyle="input input-bordered w-full"
+            />
+
+            {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+
+            <div className="text-right mt-2">
+              <Link
+                to="/forgot-password"
+                className="text-red-500 hover:text-red-600 transition duration-200 text-sm"
+              >
+                Forgot Password?
+              </Link>
             </div>
-          </div>
-        </div>
 
-        {/* <!-- Features Section --> */}
-        <div class="py-16 bg-neutral">
-          <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-              <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                  <h2 class="card-title">NFC Card Compatibility</h2>
-                  <p>
-                    Seamless integration with NFC cards for easy attendance.
-                  </p>
-                </div>
-              </div>
-              <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                  <h2 class="card-title">Fingerprint Scanning</h2>
-                  <p>
-                    Enhanced security with biometric fingerprint identification.
-                  </p>
-                </div>
-              </div>
-              <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                  <h2 class="card-title">Real-time Tracking</h2>
-                  <p>Monitor attendance in real-time with instant updates.</p>
-                </div>
-              </div>
-              <div class="card bg-base-100 shadow-xl">
-                <div class="card-body">
-                  <h2 class="card-title">Top-notch Security</h2>
-                  <p>
-                    Ensure the safety of your data with advanced security
-                    protocols.
-                  </p>
-                </div>
-              </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`btn mt-4 w-full ${
+                loading ? "loading" : ""
+              } bg-red-700 hover:bg-red-800 text-white`}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </button>
+
+            <div className="text-center mt-4 text-white">
+              Don't have an account yet?{" "}
+              <Link
+                to="/register"
+                className="text-red-500 hover:text-red-600 transition duration-200"
+              >
+                Register
+              </Link>
             </div>
-          </div>
-        </div>
-
-        {/* <!-- About Section --> */}
-        <div class="py-16">
-          <div class="container mx-auto px-4">
-            <div class="text-center">
-              <h2 class="text-3xl font-bold mb-4">About Bionite</h2>
-              <p class="max-w-xl mx-auto">
-                Bionite revolutionizes attendance management by offering a
-                secure, efficient, and user-friendly solution for organizations
-                of all sizes.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* <!-- CTA Section --> */}
-        <div class="py-16 bg-neutral text-neutral-content">
-          <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold">Ready to get started?</h2>
-            <p class="mb-5">
-              Contact us today to learn more about Bionite or to schedule a
-              demo.
-            </p>
-            <button class="btn btn-primary">Contact Us</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default Login;

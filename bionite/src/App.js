@@ -20,6 +20,7 @@ function App() {
           {/* Use 'Routes' here */}
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/login" element={<LoginPage />} />
           {/* Redirect is handled differently in v6 */}
           {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
         </Routes>
