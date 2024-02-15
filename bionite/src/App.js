@@ -1,30 +1,30 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes, // Import 'Routes' instead of 'Switch'
-  Redirect,
-} from "react-router-dom";
+import React, { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
-import LoginPage from "./pages/LoginPage";
-import DashBoard from "./pages/DashBoard";
-import HomePage from "./pages/HomePage";
-// import RegisterPage from "./pages/RegisterPage";
+import { themeChange } from "theme-change";
+
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const DashBoard = lazy(() => import("./pages/DashBoard"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
 function App() {
+  useEffect(() => {
+    themeChange(false);
+  }, []);
+
   return (
     <Router>
-      <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        {" "}
+        {/* Add a fallback for loading state */}
         <Routes>
-          {" "}
-          {/* Use 'Routes' here */}
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/login" element={<LoginPage />} />
-          {/* Redirect is handled differently in v6 */}
-          {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
-      </div>
+      </Suspense>
     </Router>
   );
 }

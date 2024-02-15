@@ -24,7 +24,7 @@ const Navbar = () => {
           Login
         </Link>
         {/* If "Get Started" leads to a sign-up page, use Link; otherwise, keep as button if it triggers a modal or another action */}
-        <Link to="/get-started" className="btn small-btn btn-primary">
+        <Link to="/Register" className="btn small-btn btn-primary">
           Get Started
         </Link>
       </div>

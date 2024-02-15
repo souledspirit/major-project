@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import LandingIntro from "./LandingIntro";
 import ErrorText from "../components/Typography/ErrorText";
 import InputText from "../components/Input/InputText";
 
@@ -26,7 +25,7 @@ function Login() {
       setLoading(true);
       // Simulate API call
       setTimeout(() => {
-        localStorage.setItem("token", "DumyTokenHere");
+        localStorage.setItem("token", "DummyTokenHere");
         setLoading(false);
         window.location.href = "/app/welcome";
       }, 2000);
@@ -39,10 +38,10 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="card w-full max-w-md bg-gray-900 shadow-2xl">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center dark:bg-gray-900">
+      <div className="card w-full max-w-md shadow-2xl dark:bg-gray-800">
         <div className="card-body">
-          <h2 className="text-3xl font-bold mb-4 text-center text-red-700">
+          <h2 className="text-3xl font-bold mb-4 text-center dark:text-primary">
             Login
           </h2>
           <form onSubmit={(e) => submitForm(e)}>
@@ -53,7 +52,7 @@ function Login() {
               containerStyle="mt-4"
               labelTitle="Email Id"
               updateFormValue={updateFormValue}
-              inputStyle="input input-bordered w-full"
+              inputStyle="input input-bordered w-full dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700"
             />
 
             <InputText
@@ -63,7 +62,7 @@ function Login() {
               containerStyle="mt-4"
               labelTitle="Password"
               updateFormValue={updateFormValue}
-              inputStyle="input input-bordered w-full"
+              inputStyle="input input-bordered w-full dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700"
             />
 
             {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
@@ -71,7 +70,7 @@ function Login() {
             <div className="text-right mt-2">
               <Link
                 to="/forgot-password"
-                className="text-red-500 hover:text-red-600 transition duration-200 text-sm"
+                className="text-primary hover:text-primary-focus transition duration-200 text-sm"
               >
                 Forgot Password?
               </Link>
@@ -82,16 +81,16 @@ function Login() {
               disabled={loading}
               className={`btn mt-4 w-full ${
                 loading ? "loading" : ""
-              } bg-red-700 hover:bg-red-800 text-white`}
+              } bg-primary hover:bg-primary-focus text-white`}
             >
               {loading ? "Logging in..." : "Login"}
             </button>
 
-            <div className="text-center mt-4 text-white">
+            <div className="text-center mt-4 dark:text-gray-300">
               Don't have an account yet?{" "}
               <Link
                 to="/register"
-                className="text-red-500 hover:text-red-600 transition duration-200"
+                className="text-primary hover:text-primary-focus transition duration-200"
               >
                 Register
               </Link>
