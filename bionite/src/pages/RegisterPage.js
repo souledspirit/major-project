@@ -12,14 +12,15 @@ function Register() {
     name: "",
     password: "",
     emailId: "",
+    role: "",
   };
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [registerObj, setRegisterObj] = useState(INITIAL_REGISTER_OBJ);
-  const [showOtpModal, setShowOtpModal] = useState(false); // State to control OTP modal visibility
-  const [otp, setOtp] = useState(""); // State to store user input OTP
-  const [otpVerified, setOtpVerified] = useState(false); // New state to manage OTP verification feedback
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpVerified, setOtpVerified] = useState(false);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -30,27 +31,27 @@ function Register() {
       return setErrorMessage("Email Id is required!");
     if (!registerObj.password.trim())
       return setErrorMessage("Password is required!");
+    if (!registerObj.role.trim()) return setErrorMessage("Role is required!");
 
     setLoading(true);
     try {
-      // API call to register the user
+      const payload = {
+        username: registerObj.name, // Adjust to 'username' to match backend expectation
+        email: registerObj.emailId, // Adjust to 'email' to match backend expectation
+        password: registerObj.password,
+        role: registerObj.role,
+      };
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/users/register`,
-        {
-          username: registerObj.name,
-          email: registerObj.emailId,
-          password: registerObj.password,
-        }
+        payload
       );
       setLoading(false);
-      // Handle response
       if (response.data.success) {
-        setShowOtpModal(true); // Show OTP modal on successful registration
+        setShowOtpModal(true);
         setShowSuccessAlert(true);
         console.log("Registration Response:", response.data);
       } else {
         setErrorMessage(response.data.message || "Registration failed");
-        setShowOtpModal(true);
       }
     } catch (error) {
       setLoading(false);
@@ -64,23 +65,38 @@ function Register() {
     setOtp(e.target.value);
   };
 
-  const verifyOtp = () => {
-    // Implement OTP verification logic here
+  const verifyOtp = async () => {
     console.log("Verifying OTP:", otp);
-    // Simulate OTP verification
-    setOtpVerified(true);
-    setShowOtpModal(false); // Close OTP modal after verification
-    setTimeout(() => {
-      setOtpVerified(false); // Reset OTP verified state for future use
-      navigate("/login"); // Redirect to login
-    }, 2000); // Adjust time as needed
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/users/verify-otp`,
+        {
+          email: registerObj.emailId,
+          otp: otp,
+        }
+      );
+      if (response.data.message === "Account verified successfully.") {
+        setOtpVerified(true);
+        setShowOtpModal(false);
+        setTimeout(() => {
+          setOtpVerified(false);
+          navigate("/login");
+        }, 2000);
+      } else {
+        setErrorMessage("OTP verification failed. Please try again.");
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.response?.data?.message ||
+          "An error occurred during OTP verification."
+      );
+    }
   };
 
   const updateFormValue = ({ updateType, value }) => {
     setErrorMessage("");
     setRegisterObj({ ...registerObj, [updateType]: value });
   };
-  console.log("Show OTP Modal:", showOtpModal);
 
   return (
     <div className="min-h-screen flex items-center dark:bg-gray-900">
@@ -136,6 +152,28 @@ function Register() {
                   labelTitle="Password"
                   updateFormValue={updateFormValue}
                 />
+
+                {/* Role selection dropdown */}
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text text-white">Role</span>{" "}
+                    {/* Adjust label color for dark mode */}
+                  </label>
+                  <select
+                    className="select select-bordered select-primary w-full"
+                    value={registerObj.role}
+                    onChange={(e) =>
+                      updateFormValue({
+                        updateType: "role",
+                        value: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="">Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                  </select>
+                </div>
               </div>
 
               {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
