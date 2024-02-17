@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHive } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom"; // Import Link
-import "../styles/app.css"; // Adjust the path according to your file structure
+import "../app.css"; // Adjust the path according to your file structure
 
 const Navbar = () => {
   return (
