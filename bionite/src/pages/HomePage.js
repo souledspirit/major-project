@@ -8,6 +8,7 @@ import {
   faClockRotateLeft,
   faShieldHalved,
 } from "@fortawesome/free-solid-svg-icons";
+import backgroundImage from "../assets/backimage.svg";
 
 function HomePage() {
   return (
@@ -16,13 +17,21 @@ function HomePage() {
       {/* Hero Section */}
       <div
         className="hero min-h-screen"
-        style={{ backgroundImage: `url('path/to/your/background-image.jpg')` }}
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+        }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Welcome to Bionite</h1>
-            <p className="mb-5">
+            <h1 className="mb-5 text-5xl font-bold text-primary-focus">
+              Welcome to Bionite
+            </h1>
+            <p
+              className="mb-5"
+              style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
+            >
               The next generation of attendance systems using NFC and
               fingerprint technology.
             </p>

@@ -1,47 +1,51 @@
 import React, { lazy, Suspense, useEffect } from "react";
+import "./app.css";
+import "./index.css";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import "./index.css";
 import { themeChange } from "theme-change";
 import checkAuth from "./app/auth";
 import initializeApp from "./app/init";
-import ForgotPassword from "./pages/ForgotPassword";
 
-const Layout = lazy(() => import("./containers/Layout"));
-const LoginPage = lazy(() => import("./pages/LoginPage"));
-// const DashBoard = lazy(() => import("./pages/DashBoard"));
+// Lazy loading the components
+const Layout = lazy(() => import("./components/containers/Layout"));
+const Login = lazy(() => import("./pages/LoginPage"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const Register = lazy(() => import("./pages/RegisterPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
-const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
-// Initializing different libraries
+// Initializing different libraries and checking for authentication
 initializeApp();
-
-// Check for login and initialize axios
 const token = checkAuth();
 
 function App() {
   useEffect(() => {
-    themeChange(false);
+    themeChange(false); // Initializing themeChange
   }, []);
 
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         {" "}
-        {/* Add a fallback for loading state */}
+        {/* Fallback for lazy loading */}
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/dashboard" element={<DashBoard />} /> */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/register" element={<Register />} />
 
-          <Route path="/app/*" element={<Layout />} />
+          {/* Protected Routes inside Layout */}
+          <Route
+            path="/app/*"
+            element={token ? <Layout /> : <Navigate to="/login" replace />}
+          />
 
+          {/* Redirect based on authentication */}
           <Route
             path="*"
             element={

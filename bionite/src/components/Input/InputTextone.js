@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 
-function InputText({
+function InputTextone({
   labelTitle,
   labelStyle,
   type,
   containerStyle,
   defaultValue,
   placeholder,
-  updateFormValue, // Used for most inputs
-  updateType,
-  onChange, // New prop for direct onChange handling (e.g., confirm password)
+  updateFormValue,
+  name,
 }) {
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setValue(value); // Update local state
-    if (onChange) {
-      onChange(e); // Directly call provided onChange if exists
-    } else if (updateFormValue) {
-      updateFormValue({ updateType, value }); // Fallback to updateFormValue if provided
-    }
-  };
-
   const [value, setValue] = useState(defaultValue);
+
+  const updateInputValue = (e) => {
+    const { name, value } = e.target;
+    setValue(value);
+    updateFormValue(e); // Pass the entire event to updateFormValue
+  };
 
   return (
     <div className={`form-control w-full ${containerStyle}`}>
@@ -32,13 +27,14 @@ function InputText({
       </label>
       <input
         type={type || "text"}
+        name={name}
         value={value}
         placeholder={placeholder || ""}
-        onChange={handleChange}
+        onChange={updateInputValue} // Pass the event to updateInputValue
         className="input input-bordered w-full"
       />
     </div>
   );
 }
 
-export default InputText;
+export default InputTextone;

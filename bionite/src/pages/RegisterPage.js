@@ -21,6 +21,7 @@ function Register() {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [otp, setOtp] = useState("");
   const [otpVerified, setOtpVerified] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -32,6 +33,10 @@ function Register() {
     if (!registerObj.password.trim())
       return setErrorMessage("Password is required!");
     if (!registerObj.role.trim()) return setErrorMessage("Role is required!");
+
+    if (registerObj.password !== confirmPassword) {
+      return setErrorMessage("Passwords do not match!");
+    }
 
     setLoading(true);
     try {
@@ -117,7 +122,9 @@ function Register() {
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span>Registration successful! Redirecting to login...</span>
+            <span>
+              Registration successful! ,OTP has been sent to the mail...
+            </span>
           </div>
         )}
         <div className="grid md:grid-cols-2 grid-cols-1 dark:bg-gray-700 rounded-xl">
@@ -151,6 +158,14 @@ function Register() {
                   containerStyle="mt-4"
                   labelTitle="Password"
                   updateFormValue={updateFormValue}
+                />
+
+                <InputText
+                  defaultValue={confirmPassword}
+                  type="password"
+                  containerStyle="mt-4"
+                  labelTitle="Confirm Password"
+                  onChange={(e) => setConfirmPassword(e.target.value)} // Assuming your InputText supports onChange
                 />
 
                 {/* Role selection dropdown */}

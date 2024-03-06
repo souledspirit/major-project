@@ -1,31 +1,31 @@
-import PageContent from "./PageContent";
+// import PageContent from "./PageContent";
 import LeftSidebar from "./LeftSidebar";
 import { useSelector, useDispatch } from "react-redux";
-import RightSidebar from "./RightSidebar";
+// import RightSidebar from "./RightSidebar";
 import { useEffect } from "react";
-import { removeNotificationMessage } from "../features/common/headerSlice";
-import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications";
-import "react-notifications/lib/notifications.css";
-import ModalLayout from "./ModalLayout";
+// import { removeNotificationMessage } from "../features/common/headerSlice";
+// import {
+//   NotificationContainer,
+//   NotificationManager,
+// } from "react-notifications";
+// import "react-notifications/lib/notifications.css";
+// import ModalLayout from "./ModalLayout";
 
 function Layout() {
   const dispatch = useDispatch();
-  const { newNotificationMessage, newNotificationStatus } = useSelector(
-    (state) => state.header
-  );
+  // const { newNotificationMessage, newNotificationStatus } = useSelector(
+  //   (state) => state.header
+  // );
 
-  useEffect(() => {
-    if (newNotificationMessage !== "") {
-      if (newNotificationStatus === 1)
-        NotificationManager.success(newNotificationMessage, "Success");
-      if (newNotificationStatus === 0)
-        NotificationManager.error(newNotificationMessage, "Error");
-      dispatch(removeNotificationMessage());
-    }
-  }, [newNotificationMessage]);
+  // useEffect(() => {
+  //   if (newNotificationMessage !== "") {
+  //     if (newNotificationStatus === 1)
+  //       NotificationManager.success(newNotificationMessage, "Success");
+  //     if (newNotificationStatus === 0)
+  //       NotificationManager.error(newNotificationMessage, "Error");
+  //     dispatch(removeNotificationMessage());
+  //   }
+  // }, [newNotificationMessage]);
 
   return (
     <>
@@ -36,18 +36,18 @@ function Layout() {
           type="checkbox"
           className="drawer-toggle"
         />
-        <PageContent />
+        {/* <PageContent /> */}
         <LeftSidebar />
       </div>
 
       {/* Right drawer - containing secondary content like notifications list etc.. */}
-      <RightSidebar />
+      {/* <RightSidebar /> */}
 
       {/** Notification layout container */}
-      <NotificationContainer />
+      {/* <NotificationContainer /> */}
 
       {/* Modal layout container */}
-      <ModalLayout />
+      {/* <ModalLayout /> */}
     </>
   );
 }
