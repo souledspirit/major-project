@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./index.css";
-import "./app.css";
 import { themeChange } from "theme-change";
 import checkAuth from "./app/auth";
 import initializeApp from "./app/init";
