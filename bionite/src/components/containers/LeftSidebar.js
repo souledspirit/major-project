@@ -28,10 +28,10 @@ function LeftSidebar() {
           <Link to={"/app/welcome"}>
             <img
               className="mask mask-squircle w-10"
-              src="/logo192.png"
-              alt="DashWind Logo"
+              src="./assets/hive.png"
+              alt="Bionite Logo"
             />
-            DashWind
+            Bionite
           </Link>{" "}
         </li>
         {routes.map((route, k) => {
