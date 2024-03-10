@@ -1,5 +1,5 @@
 /** Icons are imported separatly to reduce build time */
-import BellIcon from "@heroicons/react/24/outline/BellIcon";
+
 import DocumentTextIcon from "@heroicons/react/24/outline/DocumentTextIcon";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon";
 import TableCellsIcon from "@heroicons/react/24/outline/TableCellsIcon";
@@ -27,37 +27,44 @@ const routes = [
     path: "/app/dashboard",
     icon: <Squares2X2Icon className={iconClasses} />,
     name: "Dashboard",
+    roles: ["student"],
   },
   {
     path: "/app/leads", // url
     icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
     name: "Leads", // name that appear in Sidebar
+    roles: ["staff"],
   },
   {
     path: "/app/transactions", // url
     icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
-    name: "Transactions", // name that appear in Sidebar
+    name: "Transactions",
+    roles: ["staff"], // name that appear in Sidebar
   },
   {
     path: "/app/charts", // url
     icon: <ChartBarIcon className={iconClasses} />, // icon component
     name: "Analytics", // name that appear in Sidebar
+    roles: ["staff"],
   },
   {
     path: "/app/integration", // url
     icon: <BoltIcon className={iconClasses} />, // icon component
     name: "Integration", // name that appear in Sidebar
+    roles: ["staff"],
   },
   {
     path: "/app/calendar", // url
     icon: <CalendarDaysIcon className={iconClasses} />, // icon component
     name: "Calendar", // name that appear in Sidebar
+    roles: ["staff"],
   },
 
   {
     path: "", //no url needed as this has submenu
     icon: <DocumentDuplicateIcon className={`${iconClasses} inline`} />, // icon component
     name: "Pages", // name that appear in Sidebar
+    roles: ["staff"],
     submenu: [
       {
         path: "/login",
@@ -90,6 +97,7 @@ const routes = [
     path: "", //no url needed as this has submenu
     icon: <Cog6ToothIcon className={`${iconClasses} inline`} />, // icon component
     name: "Settings", // name that appear in Sidebar
+    roles: ["staff"],
     submenu: [
       {
         path: "/app/settings-profile", //url
@@ -112,6 +120,7 @@ const routes = [
     path: "", //no url needed as this has submenu
     icon: <DocumentTextIcon className={`${iconClasses} inline`} />, // icon component
     name: "Documentation", // name that appear in Sidebar
+    roles: ["staff"],
     submenu: [
       {
         path: "/app/getting-started", // url

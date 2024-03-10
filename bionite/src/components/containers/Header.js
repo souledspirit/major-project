@@ -1,14 +1,18 @@
 import { themeChange } from "theme-change";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import BellIcon from "@heroicons/react/24/outline/BellIcon";
+
 import Bars3Icon from "@heroicons/react/24/outline/Bars3Icon";
 import MoonIcon from "@heroicons/react/24/outline/MoonIcon";
 import SunIcon from "@heroicons/react/24/outline/SunIcon";
-import { openRightDrawer } from "../../features/common/rightDrawerSlice";
-import { RIGHT_DRAWER_TYPES } from "../../utils/globalConstantUtil";
 
-import { NavLink, Routes, Link, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Routes,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 function Header() {
   const dispatch = useDispatch();
@@ -16,6 +20,7 @@ function Header() {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("theme")
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     themeChange(false);
@@ -33,18 +38,10 @@ function Header() {
   }, []);
 
   // Opening right sidebar for notification
-  const openNotification = () => {
-    dispatch(
-      openRightDrawer({
-        header: "Notifications",
-        bodyType: RIGHT_DRAWER_TYPES.NOTIFICATION,
-      })
-    );
-  };
 
   function logoutUser() {
     localStorage.clear();
-    window.location.href = "/";
+    navigate("/");
   }
 
   return (
@@ -96,21 +93,6 @@ function Header() {
             />
           </label>
 
-          {/* Notification icon */}
-          <button
-            className="btn btn-ghost ml-4  btn-circle"
-            onClick={() => openNotification()}
-          >
-            <div className="indicator">
-              <BellIcon className="h-6 w-6" />
-              {noOfNotifications > 0 ? (
-                <span className="indicator-item badge badge-secondary badge-sm">
-                  {noOfNotifications}
-                </span>
-              ) : null}
-            </div>
-          </button>
-
           {/* Profile icon, opening menu on click */}
           <div className="dropdown dropdown-end ml-4">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -129,7 +111,7 @@ function Header() {
                 </Link>
               </li>
               <li className="">
-                <Link to={"/app/settings-billing"}>Bill History</Link>
+                <Link to={"/app/settings-billing"}> Details</Link>
               </li>
               <div className="divider mt-0 mb-0"></div>
               <li>

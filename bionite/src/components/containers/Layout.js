@@ -42,7 +42,7 @@ function Layout() {
       </div>
 
       {/* Right drawer - containing secondary content like notifications list etc.. */}
-      <RightSidebar />
+      {/* <RightSidebar /> */}
 
       {/** Notification layout container */}
       <NotificationContainer />

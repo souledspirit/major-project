@@ -80,7 +80,7 @@ function Register() {
           otp: otp,
         }
       );
-      if (response.data.message === "Account verified successfully.") {
+      if (response.data.success) {
         setOtpVerified(true);
         setShowOtpModal(false);
         setTimeout(() => {
@@ -232,9 +232,10 @@ function Register() {
                 onChange={handleOtpChange}
               />
               <div className="modal-action">
-                <a href="#" className="btn" onClick={verifyOtp}>
+                <button onClick={verifyOtp} className="btn">
                   Verify
-                </a>
+                </button>
+                {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
               </div>
             </div>
           </div>

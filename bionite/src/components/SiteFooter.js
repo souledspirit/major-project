@@ -12,7 +12,7 @@ function SiteFooter() {
               href="https://www.instagram.com/jees_p_jose?igsh=MTF5eDJ4dGwxaXF1Mw=="
               className="link link-hover underline text-primary hover:text-primary-focus"
             >
-              Jees P J-Main Lead
+              BIONITE TEAM
             </a>
           </p>
         </div>

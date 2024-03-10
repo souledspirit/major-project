@@ -24,62 +24,77 @@ const routes = [
   {
     path: "/dashboard", // the url
     component: Dashboard, // view rendered
+    roles: ["student", "staff"],
   },
   {
     path: "/welcome", // the url
-    component: Welcome, // view rendered
+    component: Welcome,
+    roles: ["staff"], // view rendered
   },
   {
     path: "/leads",
     component: Leads,
+    roles: ["staff"], //
   },
   {
     path: "/settings-team",
     component: Team,
+    roles: ["staff"], //
   },
   {
     path: "/calendar",
     component: Calendar,
+    roles: ["staff"], //
   },
   {
     path: "/transactions",
     component: Transactions,
+    roles: ["staff"], //
   },
   {
     path: "/settings-profile",
     component: ProfileSettings,
+    roles: ["staff"], //
   },
   {
     path: "/settings-billing",
     component: Bills,
+    roles: ["staff"],
   },
   {
     path: "/getting-started",
     component: GettingStarted,
+    roles: ["staff"],
   },
   {
     path: "/features",
     component: DocFeatures,
+    roles: ["staff"],
   },
   {
     path: "/components",
     component: DocComponents,
+    roles: ["staff"],
   },
   {
     path: "/integration",
     component: Integration,
+    roles: ["staff"],
   },
   {
     path: "/charts",
     component: Charts,
+    roles: ["staff"],
   },
   {
     path: "/404",
     component: Page404,
+    roles: ["staff"],
   },
   {
     path: "/blank",
     component: Blank,
+    roles: ["staff"],
   },
 ];
 

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { setAuthInfo } from "../features/auth/authSlice";
 import ErrorText from "../components/Typography/ErrorText";
 import InputTextone from "../components/Input/InputTextone";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+// Other imports...
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
@@ -10,6 +13,7 @@ function Login() {
     emailId: "",
   };
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
@@ -64,7 +68,19 @@ function Login() {
       );
 
       // Save the final token after OTP verification
-      localStorage.setItem("token", response.data.token); // Corrected from tempToken to token
+      console.log("Token:", response.data.token);
+      console.log("User object received:", response.data.user);
+      console.dir(response.data.user);
+
+      dispatch(
+        setAuthInfo({
+          token: response.data.token,
+          user: response.data.user, // Dispatching the entire user object
+        })
+      );
+
+      localStorage.setItem("token", response.data.token);
+
       navigate("/app/dashboard");
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Error verifying OTP");
@@ -141,6 +157,7 @@ function Login() {
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
             />
+            {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
             <button
               className="btn mt-4 w-full bg-primary hover:bg-primary-focus text-white"
               onClick={verifyOtp}
