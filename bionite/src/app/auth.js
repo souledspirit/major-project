@@ -11,7 +11,7 @@ const checkAuth = () => {
   );
 
   if (!TOKEN && !isPublicPage) {
-    window.location.href = "/login";
+    window.location.href = "/";
     return;
   } else {
     axios.defaults.headers.common["Authorization"] = `Bearer ${TOKEN}`;

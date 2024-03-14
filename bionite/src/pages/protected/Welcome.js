@@ -8,7 +8,7 @@ function InternalPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setPageTitle({ title: "Your Page Title" })); // Replace "" with your actual page title
+    dispatch(setPageTitle({ title: "Student details" })); // Replace "" with your actual page title
   }, [dispatch]); // Include `dispatch` in the dependency array
 
   return (
