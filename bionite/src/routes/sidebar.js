@@ -9,6 +9,8 @@ import CurrencyDollarIcon from "@heroicons/react/24/outline/CurrencyDollarIcon";
 import InboxArrowDownIcon from "@heroicons/react/24/outline/InboxArrowDownIcon";
 import { CpuChipIcon } from "@heroicons/react/24/outline"; // Corrected import
 import { CloudArrowDownIcon } from "@heroicons/react/24/outline"; // Corrected import
+import { ListBulletIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 const iconClasses = `h-6 w-6`;
 const submenuIconClasses = `h-5 w-5`;
@@ -24,19 +26,25 @@ const routes = [
     path: "/app/staff-dashboard",
     icon: <Squares2X2Icon className={iconClasses} />,
     name: "Staff Dashboard",
-    roles: ["staff"],
+    roles: ["faculty"],
   },
   {
-    path: "/app/leads", // url
+    path: "/app/add-class-with-timetable", // url
     icon: <InboxArrowDownIcon className={iconClasses} />, // icon component
-    name: "Leads", // name that appear in Sidebar
-    roles: ["staff"],
+    name: "Time Table", // name that appear in Sidebar
+    roles: ["faculty"],
   },
   {
-    path: "/app/transactions", // url
-    icon: <CurrencyDollarIcon className={iconClasses} />, // icon component
-    name: "Transactions",
-    roles: ["staff"], // name that appear in Sidebar
+    path: "/app/add-session", // url
+    icon: <PlusCircleIcon className={iconClasses} />, // icon component
+    name: "Add Session", // name that appear in Sidebar
+    roles: ["faculty"],
+  },
+  {
+    path: "/app/StudentList", // url
+    icon: <ListBulletIcon className={iconClasses} />, // icon component
+    name: "Student List",
+    roles: ["faculty"], // name that appear in Sidebar
   },
 
   {

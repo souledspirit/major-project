@@ -17,28 +17,28 @@ import { useState } from "react";
 
 const statsData = [
   {
-    title: "Present Day Attendance",
-    value: "Present",
+    title: "Total Students",
+    value: "2",
     icon: <UserGroupIcon className="w-8 h-8" />,
-    description: "approved",
+    description: "Current enrollment",
   },
   {
-    title: "Number Of Hours",
-    value: "3",
-    icon: <CreditCardIcon className="w-8 h-8" />,
-    description: "Time duration",
-  },
-  {
-    title: "Number Of Period ",
-    value: "3",
+    title: "Average Attendance",
+    value: "95%",
     icon: <CircleStackIcon className="w-8 h-8" />,
-    description: "Attended",
+    description: "This month",
   },
   {
-    title: "Attendance Percentage",
-    value: "35.5%",
+    title: "Assignments Submitted",
+    value: "4",
+    icon: <CreditCardIcon className="w-8 h-8" />,
+    description: "In current week",
+  },
+  {
+    title: "Active Courses",
+    value: "5",
     icon: <UsersIcon className="w-8 h-8" />,
-    description: "based on current day",
+    description: "Current semester",
   },
 ];
 

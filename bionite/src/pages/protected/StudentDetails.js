@@ -9,7 +9,8 @@ function InternalPage() {
   const dispatch = useDispatch();
   const authToken = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
-  const studentId = user?.studentDetails?._id;
+  const studentId = user?.additionalDetails?._id;
+  console.log("studentId", studentId);
   const [studentDetails, setStudentDetails] = useState(null);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ function InternalPage() {
         }
       );
       setStudentDetails(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch student details", error);
       // You may want to handle errors, e.g., set an error state and display it

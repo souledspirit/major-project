@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TitleCard from "../../../components/Cards/TitleCard";
 import InputTextSecond from "../../../components/Input/InputTextSecond";
 import SelectBox from "../../../components/Input/SelectBox";
-import { updateStudentDetails } from "../../../features/auth/authSlice"; // Import the action
+import { updateAdditionalDetails } from "../../../features/auth/authSlice"; // Import the action
 import { useNavigate } from "react-router-dom";
 
 function ProfileSettings() {
@@ -12,7 +12,7 @@ function ProfileSettings() {
   const navigate = useNavigate();
   const authToken = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
-  const studentId = user?.studentDetails?._id;
+  const studentId = user?.additionalDetails?._id;
 
   const [profile, setProfile] = useState({
     name: "",
@@ -21,7 +21,7 @@ function ProfileSettings() {
     section: "",
     academicLevel: "",
     currentSemester: "",
-    departmentName: "Computer Engineering",
+    departmentName: "",
     className: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
@@ -61,7 +61,7 @@ function ProfileSettings() {
         body,
         { headers }
       );
-      dispatch(updateStudentDetails(response.data.data)); // Assuming this updates the Redux state correctly
+      dispatch(updateAdditionalDetails(response.data.data)); // Assuming this updates the Redux state correctly
       setSuccessMessage("Profile Updated Successfully");
       setErrorMessage("");
       setIsModalOpen(true);
@@ -181,15 +181,13 @@ function ProfileSettings() {
             updateFormValue={updateFormValue}
           />
           {/* Other fields remain unchanged */}
-          <SelectBox
+
+          <InputTextSecond
             labelTitle="Department Name"
             name="departmentName"
             defaultValue={profile.departmentName}
             updateFormValue={updateFormValue}
-            options={departmentOptions}
-            placeholder="Select Department"
           />
-          {/* Continue with other fields */}
 
           <InputTextSecond
             labelTitle="Class Name"

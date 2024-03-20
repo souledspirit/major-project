@@ -16,11 +16,11 @@ export const authSlice = createSlice({
       state.user = action.payload.user; // Sets the whole user object
     },
     // Action to update student details within the user object
-    updateStudentDetails: (state, action) => {
+    updateAdditionalDetails: (state, action) => {
       if (state.user) {
         // Merges new student details with existing ones
-        state.user.studentDetails = {
-          ...state.user.studentDetails,
+        state.user.additionalDetails = {
+          ...state.user.additionalDetails,
           ...action.payload,
         };
       }
@@ -34,6 +34,7 @@ export const authSlice = createSlice({
 });
 
 // Exporting the actions to be used elsewhere in the application
-export const { setAuthInfo, updateStudentDetails, logout } = authSlice.actions;
+export const { setAuthInfo, updateAdditionalDetails, logout } =
+  authSlice.actions;
 
 export default authSlice.reducer;

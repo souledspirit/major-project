@@ -81,7 +81,11 @@ function Login() {
 
       localStorage.setItem("token", response.data.token);
 
-      navigate("/app/dashboard");
+      if (response.data.user.role === "student") {
+        navigate("/app/dashboard");
+      } else {
+        navigate("/app/staff-dashboard");
+      }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Error verifying OTP");
     }

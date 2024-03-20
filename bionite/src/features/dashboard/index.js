@@ -9,8 +9,10 @@ import CreditCardIcon from "@heroicons/react/24/outline/CreditCardIcon";
 import ClockIcon from "@heroicons/react/24/outline/ClockIcon"; // New icon for time
 
 function Dashboard() {
+  const authToken = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
-  const studentId = user?.studentDetails?._id;
+  const studentId = user?.additionalDetails?._id;
+  console.log("studentId", studentId);
   const [attendanceSummary, setAttendanceSummary] = useState(null);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function Dashboard() {
   const fetchAttendanceSummary = async (studentId) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/attendance/students/${studentId}/attendance-summary`
+        `${process.env.REACT_APP_API_URL}/api/attendance/api/students/${studentId}/attendance-summary`
       );
       const summary = response.data.data;
       // Calculate the attendance percentage based on the total hours attended
