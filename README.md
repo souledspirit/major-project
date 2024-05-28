@@ -1,2 +1,3 @@
-# project
-mern stack project using iot
+# major-project
+
+last backup of the project source code
